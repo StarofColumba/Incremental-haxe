@@ -1,10 +1,12 @@
 
-
+import flixel.FlxGame;
+import states.Menu;
 
 class Main
 {
-    public static function main():Void 
+    public function new()
     {
-        trace("running main");
+        super();
+        addchild(new Menu());
     }
 }

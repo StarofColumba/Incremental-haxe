@@ -1,9 +1,24 @@
 
 
-import flixel.util.FlxSave
+import flixel.util.FlxSave;
 
 
 class SaveInitialisation extends FlxSave
+{
+        
+
+}
+
+
+
+
+
+class Upgrades
+{
+
+}
+
+class IdleIncome
 {
 
 }
