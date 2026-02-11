@@ -16,14 +16,12 @@ import source.Savesystem;
 
 
 class MainMenuState extends FlxState
-{     
+{ 
+   var button1:FlxUIButton = new FlxUIButton(0, 0, null, "Play", -> FlxG.switchState(new PlayState()));
    public function create():Void
     {
         _xmd_id = "menus";
         super.create();
-
-         var button1:FlxUIButton = new FlxUIButton(0, 0, null, "Play", -> FlxG.switchState(new PlayState()));
-         add(button1);
 
     
    }

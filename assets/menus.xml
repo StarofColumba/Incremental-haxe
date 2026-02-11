@@ -1,8 +1,0 @@
-<xml version="1.0" encoding="utf-8" ?>
-<data>
-
-    <definition name="MainMenu">
-    <button id="button1" label="Play">
-        <anchor x="50%" y="50%">
-    </button>
-</data>
