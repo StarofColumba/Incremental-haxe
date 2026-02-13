@@ -1,5 +1,3 @@
-package source.states;
-
 
 import flixel.FlxState;
 import flixel.FlxSprite;
@@ -11,20 +9,29 @@ import flixel.addons.ui.FlxUIState;
 import flixel.addons.ui.FlxUIText;
 import flixel.addons.ui.FlxNumericStepper;
 import flixel.util.FlxColor;
-import source.Savesystem;
+import source.SaveSystem;
 
 
 
-class MainMenuState extends FlxState
-{ 
-   var button1:FlxUIButton = new FlxUIButton(0, 0, null, "Play", -> FlxG.switchState(new PlayState()));
+class PlayState extends FlxState
+{     
+   //delta time
+   var dt = math.min(elapsed,0.1);
+
    public function create():Void
     {
-        _xmd_id = "menus";
+        _xmd_id = "Menus";
         super.create();
-
-    
+                 var button1:FlxUIButton = new FlxUIButton(0, 0, null, "Play", -> FlxG.switchState(new PlayState()));
+         add(button1);
    }
+
+   public function updateMoney():void
+   {
+      var money = money + incomePerSecond * dt
+
+   }
+
 
 }
 

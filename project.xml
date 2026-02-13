@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	
-	<meta title="Incrementalhaxe" package="com.sample.incrementalhaxe" version="1.0.0" company="Company Name" />
-	<app main="Main" path="Export" file="Incrementalhaxe" />
-	
+	<meta title="Incremental-haxe" package="com.sample.incremental-haxe" version="1.0.0" company="Company Name" />
+	<app main="Main" path="Export" file="Incremental-haxe" />
+	<window width="800" height="600" fps="60" background="#000000" />
 	<source path="Source" />
 	
 	<haxelib name="lime" />
+	<haxelib name="flixel" />
+    <haxelib name="flixel-ui" />
+    <haxelib name="hxcpp" />
+    <haxelib name="openfl" />
+
 	
 	<assets path="Assets" rename="assets" />
 	
