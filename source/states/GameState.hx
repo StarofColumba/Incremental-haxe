@@ -1,3 +1,4 @@
+package states;
 
 import flixel.FlxState;
 import flixel.FlxSprite;
@@ -7,7 +8,6 @@ import flixel.addons.ui.FlxUICheckBox;
 import flixel.addons.ui.FlxUICursor;
 import flixel.addons.ui.FlxUIState;
 import flixel.addons.ui.FlxUIText;
-import flixel.addons.ui.FlxNumericStepper;
 import flixel.util.FlxColor;
 import source.SaveSystem;
 
@@ -22,13 +22,11 @@ class PlayState extends FlxState
     {
         _xmd_id = "Menus";
         super.create();
-                 var button1:FlxUIButton = new FlxUIButton(0, 0, null, "Play", -> FlxG.switchState(new PlayState()));
-         add(button1);
    }
 
-   public function updateMoney():void
+   public function updateMoney():Void
    {
-      var money = money + incomePerSecond * dt
+         var money = money + incomePerSecond * dt;
 
    }
 

@@ -1,14 +1,13 @@
-package;
 
-import lime.app.Application;
+
 import flixel.FlxGame;
 import states.Menu;
 
-class Main extends Application
+class Main extends FlxGame
 {
-	public function new()
-	{
+    public function new()
+    {
 		super();
-		addchild(new Menu());
-	}
+        addChild(new FlxGame(800, 800, Menu,));
+    }
 }
