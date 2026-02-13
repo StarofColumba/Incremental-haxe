@@ -20,7 +20,7 @@ class Menu extends FlxState
       FlxG.switchState(new PlayState());
       });
 
-   public function create():Null<String>
+   public override function create():Null<String>
     {
         _xmd_id = "menus";
         super.create();

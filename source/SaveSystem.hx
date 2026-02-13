@@ -31,7 +31,7 @@ class Upgrades
 
     public function new()
     {
-        // Initialize data bindings here if needed
+        
     }
 }
 
