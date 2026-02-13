@@ -2,14 +2,8 @@ package states;
 
 
 import flixel.FlxState;
-import flixel.FlxSprite;
-import flixel.addons.ui.FlxUIButton;
-import flixel.addons.ui.FlxUITypedButton;
-import flixel.addons.ui.FlxUICheckBox;
-import flixel.addons.ui.FlxUICursor;
-import flixel.addons.ui.FlxUIState;
-import flixel.addons.ui.FlxUIText;
-import flixel.util.FlxColor;
+import flixel.ui.FlxButton;
+import flixel.FlxG;
 
 
 
@@ -20,10 +14,11 @@ class Menu extends FlxState
       FlxG.switchState(new PlayState());
       });
 
-   public override function create():Null<String>
+   public override function create():Void
     {
         _xmd_id = "menus";
         super.create();
+        add(button1);
     
    }
 

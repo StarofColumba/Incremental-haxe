@@ -1,16 +1,13 @@
 package states;
 
 import flixel.FlxState;
-import flixel.FlxSprite;
+import flixel.FlxText;
 import flixel.addons.ui.FlxUIButton;
 import flixel.addons.ui.FlxUITypedButton;
 import flixel.addons.ui.FlxUICheckBox;
 import flixel.addons.ui.FlxUICursor;
-import flixel.addons.ui.FlxUIState;
-import flixel.addons.ui.FlxUIText;
-import flixel.util.FlxColor;
 import source.SaveSystem;
-
+import math;
 
 
 class PlayState extends FlxState
