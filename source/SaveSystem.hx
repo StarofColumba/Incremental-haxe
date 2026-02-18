@@ -1,5 +1,3 @@
-package source;
-
 
 import flixel.util.FlxSave;
 

@@ -1,24 +1,25 @@
 package states;
 
 
+import flixel.FlxG;
 import flixel.FlxState;
 import flixel.ui.FlxButton;
-import flixel.FlxG;
+import states.GameState;
 
 
 
-class Menu extends FlxState
+class Menu extends flixel.addons.ui.FlxUIState
 { 
-   var button1:FlxUIButton = new FlxUIButton(0, 0, Null, "Play",() ->
-      {
-      FlxG.switchState(new PlayState());
-      });
+    var button1 = new FlxButton(0, 0, "Play", () ->
+    {
+        FlxG.switchState(()->new GameState());
+    });
 
    public override function create():Void
     {
-        _xmd_id = "menus";
+        _xml_id = "menus";
         super.create();
-        add(button1);
+        add(button1);  
     
    }
 
