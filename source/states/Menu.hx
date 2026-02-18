@@ -12,7 +12,7 @@ class Menu extends flixel.addons.ui.FlxUIState
 { 
     var button1 = new FlxButton(0, 0, "Play", () ->
     {
-        FlxG.switchState(new GameState());
+        FlxG.switchState(()->new GameState());
     });
 
    public override function create():Void
