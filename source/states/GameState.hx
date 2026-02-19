@@ -26,10 +26,7 @@ class GameState extends FlxState
     {
    
         super.create();
-<<<<<<< HEAD
         FlxG.autoPause = false;
-=======
->>>>>>> 3fd2dc3540f205a787f3b8ad93c9966a50fa9631
         initialiseUI();
    }
    
