@@ -6,6 +6,8 @@ import flixel.FlxGame;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
@@ -24,6 +26,7 @@ class GameState extends FlxState
     {
    
         super.create();
+        FlxG.autoPause = false;
         initialiseUI();
    }
    
@@ -47,7 +50,7 @@ class GameState extends FlxState
         var panel = new FlxSprite().makeGraphic(400,400, FlxColor.fromRGB(230,230,230,255));
         var moneyPSText = new FlxText(0,240,0,"Income per second: " + incomePerSecond,28);
         var upgradeTab = new FlxText(600,120,0 ,"Upgrades",30);
-        var upgrade1 = new FlxButton(upgradeTab.getPosition().x +10, upgradeTab.getPosition().y + upgradeTab.height + 100, "Upgrade 1 \t cost:10", ()->  
+        var upgrade1 = new FlxButton(upgradeTab.getPosition().x -30, upgradeTab.getPosition().y + upgradeTab.height + 50, "Upgrade 1 \t cost:10", ()->  
          {
          if(money >= 10)
          {
@@ -57,10 +60,11 @@ class GameState extends FlxState
          }
       });
       
-      var button2 =  new FlxButton(150, 600 , "Click", ()-> 
+      var button2 =  new FlxButton(150, 410 , "click", ()-> 
       {
          money += 1;
          moneyText.text = "Money: " + money;
+
       }); 
   
       panel.setPosition(screenWidth/2,(screenHeight - panel.height)/2);
