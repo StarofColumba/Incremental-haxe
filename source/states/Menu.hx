@@ -8,7 +8,7 @@ import states.GameState;
 
 
 
-class Menu extends flixel.addons.ui.FlxUIState
+class Menu extends FlxState
 { 
     var button1 = new FlxButton(0, 0, "Play", () ->
     {
@@ -17,8 +17,8 @@ class Menu extends flixel.addons.ui.FlxUIState
 
    public override function create():Void
     {
-        _xml_id = "menus";
         super.create();
+        button1.setGraphicSize(200, 100);
         add(button1);  
     
    }
