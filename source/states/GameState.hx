@@ -60,7 +60,7 @@ class GameState extends FlxState
          }
       });
       
-      var button2 =  new FlxButton(150, 410 , "Click here if you want to get money, Or not if you want because its totally within your rights to ignore me as the developer and do whatever you want. You can stay on $0 if you like it doesn't matter to me but if you really find that boring you should probably click within the bounds of this box. i must warn you that it will get addictive and you may find yourself not wanting to stop, so in that case you should probably take a 5 minute break and if you buy the upgrades you can get money while you are outside which is the whole point of this game", ()-> 
+      var button2 =  new FlxButton(150, 410 , "click", ()-> 
       {
          money += 1;
          moneyText.text = "Money: " + money;
