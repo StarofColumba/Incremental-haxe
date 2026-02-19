@@ -8,54 +8,75 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-
+import flixel.util.FlxTimer;
 
 class GameState extends FlxState
 {     
+   
    
    var incomePerSecond = 0.0;
    var money = 0.0;
    var screenHeight = FlxG.height;
    var screenWidth = FlxG.width; 
-
-   override function update(elapsed:Float) {
-      super.update(elapsed);
-      money += incomePerSecond * elapsed;
-      }
-
-   
-
+   var deltaTime = 0.0;
+   var moneyText = new  FlxText(100,120,0,"Money: 0",30);
    override public function create():Void
     {
-      var background = new FlxSprite().makeGraphic(800, 800, FlxColor.GRAY);
-      var panel = new FlxSprite().makeGraphic(400,400, FlxColor.fromRGB(230,230,230,255));
-      var moneyText = new  FlxText(120,120,0,"Money: " + money,30);
-      var moneyPSText = new FlxText(0,240,0,"Income per second: " + incomePerSecond,30);
-      var upgradeTab = new FlxText(600,120,0 ,"Upgrades",30);
+   
+        super.create();
+        initialiseUI();
+   }
+   
+
+    override function update(elapsed:Float,):Void {
+      
+      deltaTime = deltaTime + elapsed;
+      super.update(elapsed);
+      
+      
+      if (deltaTime >= 1.0)
+      {
+         money += incomePerSecond * deltaTime;
+         deltaTime = 0.0;
+         moneyText.text = "Money: " + money;
+      }}
+
+      public function initialiseUI()
+      {
+        var background = new FlxSprite().makeGraphic(800, 800, FlxColor.GRAY);
+        var panel = new FlxSprite().makeGraphic(400,400, FlxColor.fromRGB(230,230,230,255));
+        var moneyPSText = new FlxText(0,240,0,"Income per second: " + incomePerSecond,28);
+        var upgradeTab = new FlxText(600,120,0 ,"Upgrades",30);
+        var upgrade1 = new FlxButton(upgradeTab.getPosition().x +10, upgradeTab.getPosition().y + upgradeTab.height + 100, "Upgrade 1 \t cost:10", ()->  
+         {
+         if(money >= 10)
+         {
+            money -= 10;
+            incomePerSecond += 1;
+            moneyPSText.text = "Income per second: " + incomePerSecond; 
+         }
+      });
+      
       var button2 =  new FlxButton(150, 600 , "Click", ()-> 
       {
          money += 1;
          moneyText.text = "Money: " + money;
-      });
-        super.create();
-        panel.setPosition(screenWidth/2,(screenHeight - panel.height)/2);
-        button2.setGraphicSize(125, 100);
-       moneyText.setBorderStyle(SHADOW, FlxColor.GREEN, 1);
-       moneyPSText.setBorderStyle(SHADOW, FlxColor.WHITE, 1);
-       upgradeTab.setBorderStyle(SHADOW, FlxColor.BLUE, 1);
-        add(background);
-        add(panel);
-        add(button2);
-        add(moneyText);
-        add(moneyPSText);
-        add(upgradeTab);
-        
+      }); 
+  
+      panel.setPosition(screenWidth/2,(screenHeight - panel.height)/2);
+      button2.setGraphicSize(100, 100);
+      button2.color = FlxColor.fromRGB(0,200,20);
+      moneyText.setBorderStyle(SHADOW, FlxColor.GREEN, 1);
+      moneyPSText.setBorderStyle(SHADOW, FlxColor.WHITE, 1);
+      upgradeTab.setBorderStyle(SHADOW, FlxColor.BLUE, 1);
 
-   }
-   
-
-
-
+      add(background);
+      add(panel);
+      add(button2);
+      add(moneyText);
+      add(moneyPSText);
+      add(upgradeTab);
+      add(upgrade1);
+      }
+      
 }
-
-
