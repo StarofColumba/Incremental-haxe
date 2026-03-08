@@ -1,5 +1,6 @@
 
 import flixel.util.FlxSave;
+import states.GameState;
 
 
 class Load extends FlxSave
@@ -24,17 +25,15 @@ class Load extends FlxSave
 
 class Upgrades
 {
-    var money = 0;
-    var incomePerSecond = 0;
-
-    public function new()
-    {
-        
-    }
-}
-
-class IdleIncome
-{
+    public var upgrades:Map<String,Dynamic> = [
+        "Clicker" => {price: 10, income: 0, unlocks: ["monekysave"]},
+        "monekysave" => {price: 100, income: 0, unlocks: []}
+    ];
     
-
+    public function incomeupdate()
+    {
+     for (key in upgrades.keys()) {
+         incomePerSecond += upgrades[key].income;
+      }
+    };
 }

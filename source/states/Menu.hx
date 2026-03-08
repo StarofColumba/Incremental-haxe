@@ -10,7 +10,7 @@ import states.GameState;
 
 class Menu extends FlxState
 { 
-    var button1 = new FlxButton(0, 0, "Play", () ->
+    var button1 = new FlxButton(600, 600, "Play", () ->
     {
         FlxG.switchState(()->new GameState());
     });
