@@ -25,16 +25,12 @@ class Load extends FlxSave
 class Upgrades
 {
     public static var upgrades:Map<String,Dynamic> = [
-        "Clicker" => {name: "Clicker",price: 10, income: 1, unlocks: ["monekysave"]},
-        "Clicker2" => {name: "Clicker2",price: 10, income: 1, unlocks: ["monekysave2"]},
-        "monekysave" => {name: "monekysave",price: 100, income: 0, unlocks: []}
+        "monekyslave" => {name: "monekysave",price: 1000, income: 5, unlocks: []},
+        "Clicker2" => {name: "Clicker2",price: 400, income: 2, unlocks: ["monekyslave"]},
+        "Clicker" => {name: "Clicker",price: 50, income: 1, unlocks: ["clicker2"]}
     ];
+
+
     
-    public static function incomeUpdate(incomePerSecond:Float)
-    {
-    incomePerSecond = 0.0;
-     for (key in upgrades.keys()) {
-         incomePerSecond += upgrades[key].income;
-      }
-    };
+
 }
