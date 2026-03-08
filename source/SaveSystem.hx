@@ -1,6 +1,5 @@
 
 import flixel.util.FlxSave;
-import states.GameState;
 
 
 class Load extends FlxSave
@@ -13,7 +12,7 @@ class Load extends FlxSave
     }
 
     public function load(var1)
-    {
+    { 
         var money = var1.get();
     }
 }
@@ -25,13 +24,14 @@ class Load extends FlxSave
 
 class Upgrades
 {
-    public var upgrades:Map<String,Dynamic> = [
-        "Clicker" => {price: 10, income: 0, unlocks: ["monekysave"]},
-        "monekysave" => {price: 100, income: 0, unlocks: []}
+    public static var upgrades:Map<String,Dynamic> = [
+        "Clicker" => {name: "Clicker",price: 10, income: 1, unlocks: ["monekysave"]},
+        "monekysave" => {name: "monekysave",price: 100, income: 0, unlocks: []}
     ];
     
-    public function incomeupdate()
+    public static function incomeUpdate(incomePerSecond:Float)
     {
+    incomePerSecond = 0.0;
      for (key in upgrades.keys()) {
          incomePerSecond += upgrades[key].income;
       }
