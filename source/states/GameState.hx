@@ -82,11 +82,16 @@ class GameState extends FlxState
       add(moneyPSText);
       add(upgradeTab);
       //dont flame me
+      var space = 0;
       for (key in upgrades.keys()) {
-         var newupgrade = new FlxButton(upgradeTab.getPosition().x -75, upgradeTab.getPosition().y + 120, upgrades[key].name,() -> incomeUpdate(incomePerSecond));
-         var upgradetext = new FlxText(newupgrade.getPosition().x +120 , newupgrade.getPosition().y , "Price: " + upgrades[key].price + "\nIncome: " + upgrades[key].income);
+         var newupgrade = new FlxButton(upgradeTab.getPosition().x -75, upgradeTab.getPosition().y + 120 + space, upgrades[key].name,() -> incomeUpdate(incomePerSecond));
+         var upgradetext = new FlxText(newupgrade.getPosition().x +120 , newupgrade.getPosition().y ,0, "Price: " + upgrades[key].price + "\nIncome: " + upgrades[key].income);
+         newupgrade.setGraphicSize(25,50);
          add(newupgrade);
+         upgradetext.color = FlxColor.fromRGB(0,0,0);
+         upgradetext.setGraphicSize(50,50);
          add(upgradetext);
+         space += 100;
       };
       }
       

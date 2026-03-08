@@ -26,6 +26,7 @@ class Upgrades
 {
     public static var upgrades:Map<String,Dynamic> = [
         "Clicker" => {name: "Clicker",price: 10, income: 1, unlocks: ["monekysave"]},
+        "Clicker2" => {name: "Clicker2",price: 10, income: 1, unlocks: ["monekysave2"]},
         "monekysave" => {name: "monekysave",price: 100, income: 0, unlocks: []}
     ];
     
