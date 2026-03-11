@@ -30,7 +30,4 @@ class Upgrades
         "Clicker" => {name: "Clicker",price: 50, income: 1, unlocks: ["clicker2"]}
     ];
 
-
-    
-
 }
