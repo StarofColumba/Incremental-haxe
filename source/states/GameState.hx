@@ -6,18 +6,21 @@ import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import haxe.io.Float64Array;
+import haxe.macro.Expr.Case;
 
 class GameState extends FlxState
 {     
 
    
-   public var money = 0.0;
+   public var money:Float = .0;
    public var incomePerSecond = 0.0;
    var screenHeight = FlxG.height;
    var screenWidth = FlxG.width; 
@@ -38,23 +41,8 @@ class GameState extends FlxState
         initialiseUI();
    }
    
-    override function update(elapsed:Float,):Void {
-      
-      deltaTime = deltaTime + elapsed;
-      super.update(elapsed);
-      
-      //every second
-      if (deltaTime >= 1.0)
-      {
-         
-         money += incomePerSecond * 1;
-         deltaTime = 0.0;
-         moneyText.text = "Money: " + money;
-      }}
-      
 
-
-
+   
       public function initialiseUI()
          
       {
@@ -99,6 +87,8 @@ class GameState extends FlxState
             incomePerSecond += upgradeIncome;
             moneyPSText.text = "Income per second: " + incomePerSecond;
             upgradetext.text = "Price: " + upgradePrice + "\nIncome: " + upgradeIncome;
+            remove(upgradeTab);
+            upgradeTab.kill();
          }});
 
 
@@ -113,5 +103,29 @@ class GameState extends FlxState
          space += 100;
       }}//Sorry for the mess, I just wanted to get it working and then I will clean it up later, I promise. I just wanted to see if I could get the upgrades working and then I will refactor the code to make it more readable and maintainable. I know this is not the best code, but it works and that's all that matters for now. I will clean it up later, I promise. I just wanted to get the core mechanics working first before I worry about code quality. I hope you understand.Please don't lose it on me. 
       
+
+
+
+      override function update(elapsed:Float,):Void {
+   
+      deltaTime = deltaTime + elapsed;
+      super.update(elapsed);
+   
+      //every second
+      if (deltaTime >= 0.02)
+      {
+         
+         money += incomePerSecond * 1;
+         var formattedmoney = format(money);
+         deltaTime = 0.0;
+         moneyText.text = "Money: " + formattedmoney;
+      }}
+
+
+      function format(n:Float) :String{
+         if (n >= 1e3) 
+            return FlxMath.roundDecimal(n / 1e3 , 2) + "K";
+         return FlxMath.roundDecimal(n,1) + "";
+      }
       
 }
