@@ -6,15 +6,11 @@ import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
-import haxe.io.Float64Array;
-import haxe.macro.Expr.Case;
 
 class GameState extends FlxState
 {     
@@ -75,7 +71,10 @@ class GameState extends FlxState
       var space = 0;
       for (key in upgrades.keys()) {
          var upgradeTab = new FlxText(600,120,0 ,"Upgrades",30);
+         var upgradeIncome = upgrades[key].income;
          var upgradePrice = upgrades[key].price;
+         var displayPrice = format(upgradePrice);
+         var upgradetext = new FlxText(upgradeTab.getPosition().x + 115, upgradeTab.getPosition().y + 100 + space, 0, "Price: " + displayPrice + "\nIncome: " + upgradeIncome, 20);
          var upgradeIncome = upgrades[key].income;
          var newupgrade = new FlxButton(upgradeTab.getPosition().x -75, upgradeTab.getPosition().y + 120 + space, upgrades[key].name,() -> 
          {
@@ -84,24 +83,23 @@ class GameState extends FlxState
             money -= upgradePrice;
             upgradePrice *= 1.20;
             upgrades[key].price = upgradePrice;
-            incomePerSecond += upgradeIncome;
+            incomePerSecond += upgradeIncome; //???
             moneyPSText.text = "Income per second: " + incomePerSecond;
             upgradetext.text = "Price: " + upgradePrice + "\nIncome: " + upgradeIncome;
-            remove(upgradeTab);
-            upgradeTab.kill();
+            add(upgradetext);
+
          }});
 
 
-         var upgradetext = new FlxText(newupgrade.getPosition().x +180 , newupgrade.getPosition().y ,0, "Price: " + upgradePrice + "\nIncome: " + upgradeIncome);
          newupgrade.setGraphicSize(0,50);
-         add(newupgrade);
          upgradetext.color = FlxColor.fromRGB(0,0,0);
-         upgradetext.setGraphicSize(100,50);
+         upgradetext.setGraphicSize(150,50);
+         add(newupgrade);
          add(upgradetext);
          upgradeTab.setBorderStyle(SHADOW, FlxColor.BLUE, 1);
          add(upgradeTab);
          space += 100;
-      }}//Sorry for the mess, I just wanted to get it working and then I will clean it up later, I promise. I just wanted to see if I could get the upgrades working and then I will refactor the code to make it more readable and maintainable. I know this is not the best code, but it works and that's all that matters for now. I will clean it up later, I promise. I just wanted to get the core mechanics working first before I worry about code quality. I hope you understand.Please don't lose it on me. 
+      }}
       
 
 
@@ -112,7 +110,7 @@ class GameState extends FlxState
       super.update(elapsed);
    
       //every second
-      if (deltaTime >= 0.02)
+      if (deltaTime >= 0.95)
       {
          
          money += incomePerSecond * 1;
@@ -123,9 +121,14 @@ class GameState extends FlxState
 
 
       function format(n:Float) :String{
+         if (n >= 1e9)
+            return FlxMath.roundDecimal(n / 1e9 , 2) + "B"; 
+         if (n >= 1e6)
+            return FlxMath.roundDecimal(n / 1e6 , 2) + "M";
          if (n >= 1e3) 
             return FlxMath.roundDecimal(n / 1e3 , 2) + "K";
          return FlxMath.roundDecimal(n,1) + "";
+         
       }
       
 }
